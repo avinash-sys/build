@@ -6,5 +6,6 @@ pipeline {
                 echo "code build successfully"
             }
         }
+        build 'validate'
     }
 }
