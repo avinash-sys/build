@@ -58,7 +58,7 @@ pipeline {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-		build job: 'VolBase-Validate',
+		build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
                                 string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
