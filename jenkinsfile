@@ -6,7 +6,7 @@ pipeline {
                 echo "code build successfully"
             }
         }
-        if(true) {
+        if (true) {
             build job: 'validate'
         }    
     }
