@@ -1,3 +1,57 @@
+properties(
+        [
+                buildDiscarder(
+                        logRotator(artifactDaysToKeepStr: '',
+                                artifactNumToKeepStr: '',
+                                daysToKeepStr: '10',
+                                numToKeepStr: '10'
+                        )
+                ),
+                durabilityHint('MAX_SURVIVABILITY'),
+                disableConcurrentBuilds(),
+                disableResume(),
+                [
+                        $class      : 'CopyArtifactPermissionProperty',
+                        projectNames: '*'
+                ],
+                parameters(
+                        [
+                                booleanParam(
+                                        defaultValue: true,
+                                        description: 'Do you want to use mounted maven?',
+                                        name: 'MOUNT_MAVEN'
+                                ),
+                                string(
+                                        defaultValue: 'N/A',
+                                        description: 'To build a branch',
+                                        name: 'BUILD_BRANCH',
+                                        trim: true
+                                ),
+                                string(
+                                        defaultValue: 'N/A',
+                                        description: 'To build a tag',
+                                        name: 'USER_BUILD_TAG',
+                                        trim: true
+                                ),
+                                booleanParam(
+                                        defaultValue: false,
+                                        description: 'Need debug information from Maven',
+                                        name: 'MVN_DEBUG'
+                                ),
+                                booleanParam(
+                                        defaultValue: true,
+                                        description: 'Do you want to use docker designer (with runtime license)?',
+                                        name: 'USE_DOCKER_DESIGNER'
+                                ),
+								booleanParam(
+                                        defaultValue: false,
+                                        description: 'Marking builds forever for master and tagged builds',
+                                        name: 'BUILD_FOREVER'
+                                )
+                        ]
+                )
+        ])
+
 pipeline {
     agent any
     stages {
@@ -5,9 +59,6 @@ pipeline {
             steps {
                 echo "code build successfully"
             }
-        }
-        if (true) {
-            build job: 'validate'
-        }    
+        }   
     }
 }
