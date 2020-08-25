@@ -66,10 +66,10 @@ pipeline {
                                 booleanParam(name: 'MVN_DEBUG', value: env.MVN_DEBUG.toBoolean()),
                                 booleanParam(name: 'UPSTREAM_TRIGGERED', value: true),
                                 string(name: 'UPSTREAM_BUILD_NUMBER', value: env.BUILD_NUMBER.toString()),
-                                string(name: 'DESIGNER_DOCKER_IMAGE_NO', value: designerDockerImageNo.toString()),
-                                string(name: 'BUILD_UTILS_BUILD_NO', value: buildUtilsBuildNo.toString()),
-                                string(name: 'TEST_UTILS_BUILD_NO', value: testUtilsBuildNo.toString()),
-				string(name: 'VOLANTE_PATH', value: volantepath.toString()),
+                                string(name: 'DESIGNER_DOCKER_IMAGE_NO', value: 'N/A'),
+                                string(name: 'BUILD_UTILS_BUILD_NO', value: 'N/A'),
+                                string(name: 'TEST_UTILS_BUILD_NO', value: 'N/A'),
+				string(name: 'VOLANTE_PATH', value: 'N/A'),
 				booleanParam(name: 'BUILD_FOREVER', value: env.BUILD_FOREVER.toBoolean()) ]
             }
         }  
