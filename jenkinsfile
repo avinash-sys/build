@@ -58,8 +58,20 @@ pipeline {
         stage('build the code') {
             steps {
                 echo "code build successfully"
+		build job: 'VolBase-Validate',
+                        parameters: [
+                                booleanParam(name: 'MOUNT_MAVEN', value: true),
+                                string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
+                                string(name: 'USER_BUILD_TAG', value: 'N/A'),
+                                booleanParam(name: 'MVN_DEBUG', value: env.MVN_DEBUG.toBoolean()),
+                                booleanParam(name: 'UPSTREAM_TRIGGERED', value: true),
+                                string(name: 'UPSTREAM_BUILD_NUMBER', value: env.BUILD_NUMBER.toString()),
+                                string(name: 'DESIGNER_DOCKER_IMAGE_NO', value: designerDockerImageNo.toString()),
+                                string(name: 'BUILD_UTILS_BUILD_NO', value: buildUtilsBuildNo.toString()),
+                                string(name: 'TEST_UTILS_BUILD_NO', value: testUtilsBuildNo.toString()),
+				string(name: 'VOLANTE_PATH', value: volantepath.toString()),
+				booleanParam(name: 'BUILD_FOREVER', value: env.BUILD_FOREVER.toBoolean()) ]
             }
         }  
-	build job: 'validate', parameters: [booleanParam(name: 'MOUNT_MAVEN', value: true), string(name: 'BUILD_BRANCH', value: 'N/A'), string(name: 'USER_BUILD_TAG', value: 'N/A'), booleanParam(name: 'MVN_DEBUG', value: false), booleanParam(name: 'UPSTREAM_TRIGGERED', value: false), booleanParam(name: 'BUILD_FOREVER', value: false), string(name: 'UPSTREAM_BUILD_NUMBER', value: 'N/A'), string(name: 'DESIGNER_DOCKER_IMAGE_NO', value: 'N/A'), string(name: 'BUILD_UTILS_BUILD_NO', value: 'N/A'), string(name: 'TEST_UTILS_BUILD_NO', value: 'N/A'), string(name: 'VOLANTE_PATH', value: 'N/A')]
     }
 }
