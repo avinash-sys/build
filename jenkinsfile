@@ -32,21 +32,6 @@ properties(
                                         description: 'To build a tag',
                                         name: 'USER_BUILD_TAG',
                                         trim: true
-                                ),
-                                booleanParam(
-                                        defaultValue: false,
-                                        description: 'Need debug information from Maven',
-                                        name: 'MVN_DEBUG'
-                                ),
-                                booleanParam(
-                                        defaultValue: true,
-                                        description: 'Do you want to use docker designer (with runtime license)?',
-                                        name: 'USE_DOCKER_DESIGNER'
-                                ),
-								booleanParam(
-                                        defaultValue: false,
-                                        description: 'Marking builds forever for master and tagged builds',
-                                        name: 'BUILD_FOREVER'
                                 )
                         ]
                 )
@@ -63,14 +48,7 @@ pipeline {
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
                                 string(name: 'BUILD_BRANCH', value: 'master'),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
-                                booleanParam(name: 'MVN_DEBUG', value: env.MVN_DEBUG.toBoolean()),
-                                booleanParam(name: 'UPSTREAM_TRIGGERED', value: true),
-                                string(name: 'UPSTREAM_BUILD_NUMBER', value: env.BUILD_NUMBER.toString()),
-                                string(name: 'DESIGNER_DOCKER_IMAGE_NO', value: 'N/A'),
-                                string(name: 'BUILD_UTILS_BUILD_NO', value: 'N/A'),
-                                string(name: 'TEST_UTILS_BUILD_NO', value: 'N/A'),
-				string(name: 'VOLANTE_PATH', value: 'N/A'),
-				booleanParam(name: 'BUILD_FOREVER', value: env.BUILD_FOREVER.toBoolean()) ]
+                        ]
             }
         }  
     }
