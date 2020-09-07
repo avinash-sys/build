@@ -58,10 +58,9 @@ pipeline{
                 echo "this is validate branch name $validateBranchName"
 
                 build job: 'validate',
-                        echo "this is validate branch name $validateBranchName"
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
-                                string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
+                                string(name: 'BUILD_BRANCH', value: 'develop'),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]
             }
