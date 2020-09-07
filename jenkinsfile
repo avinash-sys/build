@@ -39,7 +39,6 @@ properties(
         ])
 node {
     checkout([$class: 'GitSCM', branches:[[name:'*/master']], userRemoteConfigs:[[crdentialsId: 'git_cred', url: 'https://github.com/avinash-sys/build.git']]])
-    readFile '/var/lib/jenkins/workspace/Build'
     readProp = readProperties file: 'build.properties'
     propsFile = readFile("build.properties")
     props.load(new StringReader(propsFile))
