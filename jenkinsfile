@@ -38,6 +38,7 @@ properties(
                         ]
                 )
         ])
+def extWorkspace = exwsAllocate 'diskpool1'
 node {
     propsFile = readFile("build.properties")
     props.load(new StringReader(propsFile))
