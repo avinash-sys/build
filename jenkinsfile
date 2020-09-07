@@ -49,8 +49,8 @@ node {
     validateBranchName = props.getProperty("Validate_BranchName")
 }
 
-pipeline {
-    agent
+pipeline{
+    agent any
     stages {
         stage('build the code') {
             steps {
