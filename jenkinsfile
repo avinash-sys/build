@@ -46,7 +46,7 @@ node {
     designerDockerImageNo = props.get("docker_image_designer")
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
-    validateBranchName = props.getProperty("Validate_BranchName")
+    validateBranchName = props.getProperty("validate_BranchName")
 }
 
 pipeline{
