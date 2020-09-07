@@ -38,6 +38,7 @@ properties(
                         ]
                 )
         ])
+[$class: 'LocalBranch', localBranch: "**"]
 //def extWorkspace = exwsAllocate 'diskpool1'
 //def extWorkspace = exwsAllocate diskPoolId: 'diskpool1', strategy: fastestReadSpeed(estimatedWorkspaceSize: 100)
 node {
@@ -47,8 +48,7 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    props.setProperty("volbase_BranchName", "$branch")
-    branch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    props.setProperty("volbase_BranchName", "$Branch_Name")
 }
 
 pipeline{
@@ -58,7 +58,7 @@ pipeline{
             steps {
                 echo "code build successfully"
                 echo "this is validate branch name $validateBranchName"
-                echo "branch name is $branch"
+                echo "branch name is $Branch_Name"
 
                /* build job: 'validate',
                         parameters: [
