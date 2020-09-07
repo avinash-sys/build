@@ -47,6 +47,7 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
+    //props.setProperty("")
 }
 
 pipeline{
@@ -56,6 +57,8 @@ pipeline{
             steps {
                 echo "code build successfully"
                 echo "this is validate branch name $validateBranchName"
+                branch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                echo "branch name is $branch"
 
                 build job: 'validate',
                         parameters: [
