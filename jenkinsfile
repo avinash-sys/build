@@ -60,12 +60,12 @@ pipeline{
                 echo "this is validate branch name $validateBranchName"
                 echo "branch name is $branch"
 
-                build job: 'validate',
+               /* build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
                                 string(name: 'BUILD_BRANCH', value: 'develop'),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
-                        ]
+                        ]*/
             }
         }
     }
