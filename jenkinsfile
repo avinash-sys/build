@@ -39,6 +39,7 @@ properties(
         ])
 node {
     checkout([$class: 'GitSCM', branches:[[name:'*/master']], userRemoteConfigs:[[crdentialsId: 'git_cred', url: 'https://github.com/avinash-sys/build.git']]])
+    readFile '/var/lib/jenkins/workspace/Build'
     propsFile = readFile("build.properties")
     props.load(new StringReader(propsFile))
     designerDockerImageNo = props.get("docker_image_designer")
