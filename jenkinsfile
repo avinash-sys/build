@@ -46,9 +46,9 @@ node {
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("Validate_BranchName")
     volantepath = props.getProperty("Vol_Home")
-    if (validateBranchName == null || validateBranchName.isEmpty()) {
+    /*if (validateBranchName == null || validateBranchName.isEmpty()) {
         validateBranchName = 'master'
-    }
+    }*/
 }
 
 pipeline {
