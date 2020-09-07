@@ -47,7 +47,7 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    //props.setProperty("")
+    props.setProperty("volbase_BranchName", "$branch")
     branch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 }
 
