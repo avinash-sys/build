@@ -50,6 +50,7 @@ pipeline {
         stage('build the code') {
             steps {
                 echo "code build successfully"
+                readProp = readProperties file: 'build.properties'
                 build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
