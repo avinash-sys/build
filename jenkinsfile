@@ -47,7 +47,6 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    System.out.println("validateBranchName")
 }
 
 pipeline{
@@ -56,6 +55,8 @@ pipeline{
         stage('build the code') {
             steps {
                 echo "code build successfully"
+                echo "this is validate branch name $validateBranchName"
+
                 /*build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
