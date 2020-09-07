@@ -50,7 +50,7 @@ node docker {
 }
 
 pipeline {
-    agent docker
+    agent
     stages {
         stage('build the code') {
             steps {
