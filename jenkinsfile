@@ -40,7 +40,7 @@ properties(
         ])
 //def extWorkspace = exwsAllocate 'diskpool1'
 def extWorkspace = exwsAllocate diskPoolId: 'diskpool1', strategy: fastestReadSpeed(estimatedWorkspaceSize: 100)
-node {
+node docker {
     propsFile = readFile("build.properties")
     props.load(new StringReader(propsFile))
     designerDockerImageNo = props.get("docker_image_designer")
@@ -50,7 +50,7 @@ node {
 }
 
 pipeline {
-    agent any
+    agent docker
     stages {
         stage('build the code') {
             steps {
