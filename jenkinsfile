@@ -60,7 +60,7 @@ pipeline{
                 build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
-                                string(name: 'BUILD_BRANCH', value: $validateBranchName),
+                                string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]
             }
