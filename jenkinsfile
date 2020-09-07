@@ -1,4 +1,5 @@
-def readProp;
+def propsFile = null
+def props = new Properties()
 properties(
         [
                 buildDiscarder(
@@ -38,11 +39,12 @@ properties(
                 )
         ])
 node {
-    stage ('read properties')
-            {
-                readProp = readProperties file: 'build.properties'
-                validateBranchName = readProp.getProperty("Validate_BranchName")
-            }
+    propsFile = readFile("build.properties")
+    props.load(new StringReader(propsFile))
+    designerDockerImageNo = props.get("docker_image_designer")
+    buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
+    testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
+    validateBranchName = props.getProperty("Validate_BranchName")
 }
 
 pipeline {
