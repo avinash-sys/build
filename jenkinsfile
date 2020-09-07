@@ -37,12 +37,17 @@ properties(
                         ]
                 )
         ])
+node {
+    stage ('read properties')
+            {
+                readProp = readProperties file: 'build.properties'
+            }
+}
 
 pipeline {
     agent any
     stages {
         stage('build the code') {
-            readProp = readProperties file: 'build.properties'
             steps {
                 echo "code build successfully"
                 build job: 'validate',
