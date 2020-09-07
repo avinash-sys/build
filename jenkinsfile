@@ -43,13 +43,29 @@ pipeline {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-		build job: 'validate',
+               /* build job: 'validate',
+                        parameters: [
+                                booleanParam(name: 'MOUNT_MAVEN', value: true),
+                                string(name: 'BUILD_BRANCH', value: 'master'),
+                                string(name: 'USER_BUILD_TAG', value: 'N/A'),
+                        ]*/
+            }
+        }
+        stage('trigger validate') {
+            propsFile = readFile("build.properties")
+            pros.load(new StringReader(propsFile))
+            validateBranchName = props.getProperty("validate_BranchName")
+            when {
+                environment name: 'validateBranchName' value: 'master'
+            }
+            steps {
+                build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
                                 string(name: 'BUILD_BRANCH', value: 'master'),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]
             }
-        }  
+        }
     }
 }
