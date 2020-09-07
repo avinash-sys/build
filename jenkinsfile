@@ -55,16 +55,18 @@ pipeline {
             propsFile = readFile("build.properties")
             pros.load(new StringReader(propsFile))
             validateBranchName = props.getProperty("validate_BranchName")
-            when {
-                environment name: 'validateBranchName' value: 'master'
+            if (validateBranchName == master) {
+                steps {
+                    build job: 'validate',
+                            parameters: [
+                                    booleanParam(name: 'MOUNT_MAVEN', value: true),
+                                    string(name: 'BUILD_BRANCH', value: 'master'),
+                                    string(name: 'USER_BUILD_TAG', value: 'N/A'),
+                            ]
+                }
             }
-            steps {
-                build job: 'validate',
-                        parameters: [
-                                booleanParam(name: 'MOUNT_MAVEN', value: true),
-                                string(name: 'BUILD_BRANCH', value: 'master'),
-                                string(name: 'USER_BUILD_TAG', value: 'N/A'),
-                        ]
+            else {
+                echo  "validate branch is not master"
             }
         }
     }
