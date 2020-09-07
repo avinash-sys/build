@@ -1,3 +1,4 @@
+def props = new Properties()
 properties(
         [
                 buildDiscarder(
