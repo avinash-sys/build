@@ -50,11 +50,10 @@ pipeline {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-                readProp = readProperties file: 'build.properties'
                 build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
-                                string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
+                                string(name: 'BUILD_BRANCH', value: ${readProp['validate_BranchName']}),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]
             }
