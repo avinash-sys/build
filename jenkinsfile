@@ -1,4 +1,4 @@
-def readProp;
+def props = readProperties  file: 'build.properties'
 properties(
         [
                 buildDiscarder(
@@ -39,7 +39,7 @@ properties(
         ])
 node {
     checkout([$class: 'GitSCM', branches:[[name:'*/master']], userRemoteConfigs:[[crdentialsId: 'git_cred', url: 'https://github.com/avinash-sys/build.git']]])
-    readProp = readFile("build.properties")
+    Props = readFile("build.properties")
     props.load(new StringReader(propsFile))
     designerDockerImageNo = props.get("docker_image_designer")
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
