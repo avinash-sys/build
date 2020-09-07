@@ -1,5 +1,4 @@
-def propsFile = null
-def props = new Properties()
+def readProp;
 properties(
         [
                 buildDiscarder(
@@ -38,24 +37,12 @@ properties(
                         ]
                 )
         ])
-node {
-    checkout([$class: 'GitSCM', branches:[[name:'*/master']], userRemoteConfigs:[[crdentialsId: 'git_cred', url: 'https://github.com/avinash-sys/build.git']]])
-    propsFile = readFile("build.properties")
-    props.load(new StringReader(propsFile))
-    designerDockerImageNo = props.get("docker_image_designer")
-    buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
-    testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
-    validateBranchName = props.getProperty("Validate_BranchName")
-    volantepath = props.getProperty("Vol_Home")
-    /*if (validateBranchName == null || validateBranchName.isEmpty()) {
-        validateBranchName = 'master'
-    }*/
-}
 
 pipeline {
     agent any
     stages {
         stage('build the code') {
+            readProp = readProperties file: 'build.properties'
             steps {
                 echo "code build successfully"
                 build job: 'validate',
