@@ -41,6 +41,7 @@ node {
     stage ('read properties')
             {
                 readProp = readProperties file: 'build.properties'
+                validateBranchName = readProp.getProperty("Validate_BranchName")
             }
 }
 
@@ -53,7 +54,7 @@ pipeline {
                 build job: 'validate',
                         parameters: [
                                 booleanParam(name: 'MOUNT_MAVEN', value: true),
-                                string(name: 'BUILD_BRANCH', value: ${readProp['validate_BranchName']}),
+                                string(name: 'BUILD_BRANCH', value: validateBranchName.toString()),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]
             }
