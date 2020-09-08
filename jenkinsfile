@@ -48,17 +48,17 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    props.setProperty("volbase_BranchName", "$BUILD_BRANCH")
 }
 
 pipeline{
     agent any
+    environment{
+        some_name="${BUILD_BRANCH}"
+    }
     stages {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-                echo "this is validate branch name $validateBranchName"
-                echo "branch name is $BUILD_BRANCH"
 
                /* build job: 'validate',
                         parameters: [
@@ -66,6 +66,19 @@ pipeline{
                                 string(name: 'BUILD_BRANCH', value: 'develop'),
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                         ]*/
+            }
+        }
+        stage('trigger next job') {
+            when {
+                environment name: 'DEPLOY_TO', value: 'development'
+            }
+            steps {
+                build job: 'validate',
+                        parameters: [
+                                booleanParam(name: 'MOUNT_MAVEN', value: true),
+                                string(name: 'BUILD_BRANCH', value: 'N/A'),
+                                string(name: 'USER_BUILD_TAG', value: 'N/A'),
+                                ]
             }
         }
     }
