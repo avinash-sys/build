@@ -70,7 +70,7 @@ pipeline{
         }
         stage('trigger next job') {
             when {
-                environment name: 'DEPLOY_TO', value: 'development'
+                environment name: 'DEPLOY_TO', value: 'master'
             }
             steps {
                 build job: 'validate',
