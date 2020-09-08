@@ -48,10 +48,6 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    props.setProperty("volbase_BranchName", "$BRANCH_NAME")
-    stage ('update build.properties file') {
-        sh '''sed -ie 's/volbase_BranchName:.*/volbase_BranchName:"$BRANCH_NAME"/g'build.properties'''
-    }
 }
 
 pipeline{
