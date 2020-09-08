@@ -53,14 +53,13 @@ node {
 
 pipeline{
     agent any
-    environment{
-        DEPLOY_TO="$volbaseBranchName"
+    environment {
+        DEPLOY_TO='$BRANCH_NAME'
     }
     stages {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-                echo "this ${BRANCH_NAME}"
             }
         }
         stage('trigger next job') {
