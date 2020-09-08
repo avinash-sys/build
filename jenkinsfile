@@ -60,7 +60,7 @@ pipeline{
         stage('build the code') {
             steps {
                 echo "code build successfully"
-                echo "this ${volbaseBranchName}"
+                echo "this $BRANCH_NAME"
             }
         }
         stage('trigger next job') {
