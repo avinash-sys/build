@@ -59,7 +59,7 @@ pipeline{
                 echo "code build successfully"
             }
         }
-        /*stage('trigger next job') {
+        stage('trigger next job') {
             steps {
                 build job: 'validate',
                         parameters: [
@@ -68,6 +68,6 @@ pipeline{
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                                 ]
             }
-        }*/
+        }
     }
 }
