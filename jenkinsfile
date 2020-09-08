@@ -50,7 +50,7 @@ node {
     validateBranchName = props.getProperty("validate_BranchName")
     volbaseBranchName = props.setProperty("volbase_BranchName", "$BRANCH_NAME")
     stage ('update build.properties file') {
-        sh '''sed -ie 's/volbase_BranchName=.*/volbase_BranchName="$BRANCH_NAME"/g'build.properties'''
+        sh '''sed -ie 's/volbase_BranchName:.*/volbase_BranchName:"$BRANCH_NAME"/g'build.properties'''
     }
 }
 
