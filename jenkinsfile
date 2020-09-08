@@ -53,6 +53,9 @@ node {
 
 pipeline{
     agent any
+    environment{
+        DEPLOY_TO="$volbaseBranchName"
+    }
     stages {
         stage('build the code') {
             steps {
@@ -60,6 +63,9 @@ pipeline{
             }
         }
         stage('trigger next job') {
+            when {
+                environment name: 'DEPLOY_TO', value: 'master'
+            }
             steps {
                 build job: 'validate',
                         parameters: [
