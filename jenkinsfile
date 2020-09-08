@@ -60,6 +60,7 @@ pipeline{
         stage('build the code') {
             steps {
                 echo "code build successfully"
+                echo "hi ${env.validateBranchName}"
             }
         }
         stage('trigger next job') {
