@@ -49,6 +49,7 @@ node {
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
     sh '''sed -ie 's/volBase_BranchName:.*/volBase_BranchName= "$BRANCH_NAME"/g' build.properties'''
+    echo '$validateBranchName'
 }
 
 pipeline{
