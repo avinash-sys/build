@@ -62,6 +62,7 @@ pipeline{
             steps {
                 echo "code build successfully"
                 echo "$validateBranchName"
+                echo "$BUILD_BRANCH"
             }
         }
         stage('trigger next job') {
