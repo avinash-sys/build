@@ -55,7 +55,7 @@ node {
 pipeline{
     agent any
     environment {
-        DEPLOY_TO='$BUILD_BRANCH'
+        DEPLOY_TO='BUILD_BRANCH'
     }
     stages {
         stage('build the code') {
