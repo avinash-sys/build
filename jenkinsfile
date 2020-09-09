@@ -54,7 +54,7 @@ node {
 pipeline{
     agent any
     environment {
-        DEPLOY_TO='$validateBranchName'
+        DEPLOY_TO='$BRANCH_NAME'
     }
     stages {
         stage('build the code') {
