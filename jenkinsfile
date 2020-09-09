@@ -49,7 +49,7 @@ node {
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
     volbaseBranchName = props.getProperty("volBase_BranchName")
-   // sh '''sed -ie 's/volBase_BranchName:.*/volBase_BranchName= "$BUILD_BRANCH"/g' build.properties'''
+    sh '''sed -ie 's/volBase_BranchName=.*/volBase_BranchName= "$BUILD_BRANCH"/g' build.properties'''
 }
 
 pipeline{
@@ -65,7 +65,7 @@ pipeline{
                 echo "$BUILD_BRANCH"
             }
         }
-        stage('trigger next job') {
+        /*stage('trigger next job') {
             when {
                 environment name: 'DEPLOY_TO', value: 'master'
             }
@@ -77,6 +77,6 @@ pipeline{
                                 string(name: 'USER_BUILD_TAG', value: 'N/A'),
                                 ]
             }
-        }
+        } */
     }
 }
