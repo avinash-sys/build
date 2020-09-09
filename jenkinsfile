@@ -48,19 +48,20 @@ node {
     buildUtilsBuildNo = props.get("BuildUtils_ArtifactNO")
     testUtilsBuildNo = props.getProperty("TestUtils_ArtifactNO")
     validateBranchName = props.getProperty("validate_BranchName")
-    sh '''sed -ie 's/volBase_BranchName:.*/volBase_BranchName= "$BRANCH_NAME"/g' build.properties'''
+    volbaseBranchName = props.getProperty("volBase_BranchName")
+   // sh '''sed -ie 's/volBase_BranchName:.*/volBase_BranchName= "$BRANCH_NAME"/g' build.properties'''
 }
 
 pipeline{
     agent any
     environment {
-        DEPLOY_TO='master'
+        DEPLOY_TO='$BRANCH_NAME'
     }
     stages {
         stage('build the code') {
             steps {
                 echo "code build successfully"
-                echo "$validateBranchName"
+                echo "$volbaseBranchName"
             }
         }
         stage('trigger next job') {
